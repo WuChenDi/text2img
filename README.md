@@ -2,6 +2,10 @@
 
 这是一个使用 Next.js 的文本生成图像服务，基于 Cloudflare AI Workers 的 AI 模型。
 
+## Preview
+
+![Preview](https://cdn.jsdelivr.net/gh/cdLab996/picture-lib/wudi/text2img/index.png)
+
 ## 功能特性
 
 - 🎨 支持多个 AI 图像生成模型（Stable Diffusion XL、FLUX、DreamShaper 等）

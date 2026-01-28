@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     siteName: 'AI文生图服务',
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://cdn.jsdelivr.net/gh/cdLab996/picture-lib/wudi/text2img/index.png',
         width: 1200,
         height: 630,
         alt: 'AI文生图工具界面预览',
@@ -79,7 +79,9 @@ export const metadata: Metadata = {
     title: 'AI文生图在线工具 | 基于 Cloudflare AI',
     description:
       '免费的在线AI文生图工具，支持多种先进AI模型，即刻体验高质量图像生成。',
-    images: ['/og-image.png'],
+    images: [
+      'https://cdn.jsdelivr.net/gh/cdLab996/picture-lib/wudi/text2img/index.png',
+    ],
     creator: '@wuchendi96',
     site: '@wuchendi96',
   },
@@ -162,7 +164,8 @@ export default function RootLayout({
                 'AI文生图, AI绘画, Stable Diffusion, FLUX.1, Cloudflare AI, 文本生成图像, 在线AI工具',
               screenshot: {
                 '@type': 'ImageObject',
-                contentUrl: '/og-image.png',
+                contentUrl:
+                  'https://cdn.jsdelivr.net/gh/cdLab996/picture-lib/wudi/text2img/index.png',
                 description: 'AI文生图工具界面截图',
               },
               softwareVersion: '1.0.0',
