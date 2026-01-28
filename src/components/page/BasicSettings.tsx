@@ -84,15 +84,29 @@ export function BasicSettings({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="model">文生图模型</Label>
+          <Label htmlFor="model">模型</Label>
           <Select value={selectedModel} onValueChange={setSelectedModel}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="选择模型" />
+              <SelectValue placeholder="选择模型">
+                <div className="flex items-center gap-2">
+                  {selectedModel
+                    ? models?.find((m) => m.id === selectedModel)?.name
+                    : '选择模型'}
+                </div>
+              </SelectValue>
             </SelectTrigger>
+
             <SelectContent>
               {models?.map((model) => (
                 <SelectItem key={model.id} value={model.id}>
-                  {model.name} - {model.description}
+                  <div className="flex flex-col">
+                    <span className="font-medium">{model.name}</span>
+                    {model.description && (
+                      <span className="text-xs text-muted-foreground mt-0.5">
+                        {model.description}
+                      </span>
+                    )}
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>
