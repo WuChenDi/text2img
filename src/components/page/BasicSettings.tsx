@@ -1,4 +1,4 @@
-import { Dice1 } from 'lucide-react'
+import { Dices } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -44,7 +44,7 @@ export function BasicSettings({
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">基本设置</CardTitle>
           <Button variant="outline" size="sm" onClick={handleRandomPrompt}>
-            <Dice1 className="size-4" />
+            <Dices className="size-4" />
             随机提示词
           </Button>
         </div>
