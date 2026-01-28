@@ -148,14 +148,13 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <Github className="size-4" />
-                <span className="sr-only">GitHub 仓库</span>
               </Link>
             </Button>
             <ThemeToggle />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">
           <div className="lg:col-span-2 space-y-4">
             <BasicSettings
               models={models}
@@ -204,7 +203,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 lg:sticky lg:top-6">
             <ImageResult
               generatedImage={generatedImage}
               isPending={mutation.isPending}
