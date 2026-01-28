@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     'max-image-preview': 'large',
     'max-video-preview': -1,
   },
-  metadataBase: new URL('https://your-domain.com/'),
+  metadataBase: new URL('https://text2img.cdlab.workers.dev/'),
   alternates: {
     canonical: '/',
   },
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: 'AI文生图在线工具 | 基于 Cloudflare AI 的免费图像生成',
     description:
       '免费的在线AI文生图工具，支持 FLUX.1、Stable Diffusion XL 等多种先进模型。无需注册，即刻体验高质量AI图像生成。',
-    url: 'https://your-domain.com/',
+    url: 'https://text2img.cdlab.workers.dev/',
     siteName: 'AI文生图服务',
     images: [
       {
@@ -109,13 +109,14 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'AI文生图在线工具',
-              url: 'https://your-domain.com/',
+              url: 'https://text2img.cdlab.workers.dev/',
               description:
                 '基于 Cloudflare AI 的免费在线文生图工具，支持多种先进AI模型',
               inLanguage: 'zh-CN',
               potentialAction: {
                 '@type': 'SearchAction',
-                target: 'https://your-domain.com/?q={search_term_string}',
+                target:
+                  'https://text2img.cdlab.workers.dev/?q={search_term_string}',
                 'query-input': 'required name=search_term_string',
               },
             }),
@@ -132,7 +133,7 @@ export default function RootLayout({
               name: 'AI文生图在线工具',
               description:
                 '强大的在线AI文生图工具，基于 Cloudflare Workers AI，支持 FLUX.1 schnell、Stable Diffusion XL、DreamShaper 等多种先进模型。提供随机提示词、参数调节、图像下载等完整功能。',
-              url: 'https://your-domain.com/',
+              url: 'https://text2img.cdlab.workers.dev/',
               applicationCategory: 'MultimediaApplication',
               operatingSystem: 'Web',
               browserRequirements:
@@ -151,7 +152,7 @@ export default function RootLayout({
               publisher: {
                 '@type': 'Organization',
                 name: 'AI文生图服务',
-                url: 'https://your-domain.com/',
+                url: 'https://text2img.cdlab.workers.dev/',
               },
               datePublished: '2025-01-01',
               dateModified: new Date().toISOString().split('T')[0],
@@ -212,7 +213,7 @@ export default function RootLayout({
                   '@type': 'ListItem',
                   position: 1,
                   name: '首页',
-                  item: 'https://your-domain.com/',
+                  item: 'https://text2img.cdlab.workers.dev/',
                 },
               ],
             }),
