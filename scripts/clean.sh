@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+DIRS_TO_DELETE=(
+  "node_modules"
+  ".next"
+  ".wrangler"
+  ".open-next"
+  "out"
+  "dist"
+  "cloudflare-env.d.tsZone.Identifier"
+)
+
+echo "Start cleaning up directories: ${DIRS_TO_DELETE[*]}"
+
+for dir in "${DIRS_TO_DELETE[@]}"
+do
+  rm -rf $dir && echo "Removed $dir directory."
+done
+
+echo "Cleanup completed successfully!"
