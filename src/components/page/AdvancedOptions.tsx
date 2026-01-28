@@ -132,7 +132,7 @@ export function AdvancedOptions({
                 }
               />
               <Button variant="outline" size="icon" onClick={handleRandomSeed}>
-                <Shuffle className="w-4 h-4" />
+                <Shuffle className="size-4" />
               </Button>
             </div>
             <p className="text-xs text-muted-foreground">

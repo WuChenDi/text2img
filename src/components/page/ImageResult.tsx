@@ -34,11 +34,11 @@ export function ImageResult({
           {generatedImage && (
             <div className="flex gap-2">
               <Button variant="outline" size="sm" onClick={handleCopyParams}>
-                <Copy className="w-4 h-4 mr-1" />
+                <Copy className="size-4" />
                 复制参数
               </Button>
               <Button variant="outline" size="sm" onClick={handleDownload}>
-                <Download className="w-4 h-4 mr-1" />
+                <Download className="size-4" />
                 下载图像
               </Button>
             </div>
