@@ -1,3 +1,10 @@
+export interface Model {
+  id: string
+  name: string
+  description: string
+  key: string
+}
+
 // Available models list
 export const AVAILABLE_MODELS = [
   {
