@@ -1,7 +1,8 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { Loader2, Sparkles } from 'lucide-react'
+import { Github, Loader2, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { AdvancedOptions } from '@/components/page/AdvancedOptions'
@@ -10,10 +11,9 @@ import { ImageResult } from '@/components/page/ImageResult'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
 import { genid } from '@/lib'
-import type { Model } from '@/lib/data'
-import { useConfig } from '@/lib/hooks/useConfig'
 import type { GenerateParams } from '@/lib/hooks/useGeneration'
 import { useGeneration } from '@/lib/hooks/useGeneration'
+import type { Model } from '@/types'
 
 async function fetchModels(): Promise<Model[]> {
   const response = await fetch('/api/models')
@@ -61,9 +61,6 @@ export default function Home() {
     currentParams,
     handleGenerateClick,
   } = useGeneration()
-
-  const { data: config } = useConfig()
-  const isPasswordRequired = config?.isPasswordRequired || false
 
   const handleRandomPrompt = () => {
     if (prompts && prompts.length > 0) {
@@ -143,7 +140,19 @@ export default function Home() {
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl md:text-3xl font-bold">🐳 在线文生图服务</h1>
-          <ThemeToggle />
+          <div className="flex gap-2">
+            <Button variant="outline" size="icon" asChild>
+              <Link
+                href="https://github.com/WuChenDi/text2img.git"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="size-4" />
+                <span className="sr-only">GitHub 仓库</span>
+              </Link>
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -159,7 +168,6 @@ export default function Home() {
               selectedModel={selectedModel}
               setSelectedModel={setSelectedModel}
               handleRandomPrompt={handleRandomPrompt}
-              isPasswordRequired={isPasswordRequired}
             />
 
             <AdvancedOptions
@@ -184,12 +192,12 @@ export default function Home() {
             >
               {mutation.isPending ? (
                 <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  <Loader2 className="size-4 animate-spin" />
                   生成中...
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <Sparkles className="size-4" />
                   生成图像
                 </>
               )}

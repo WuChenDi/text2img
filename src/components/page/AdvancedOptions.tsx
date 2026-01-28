@@ -45,9 +45,9 @@ export function AdvancedOptions({
             onClick={() => setShowAdvanced(!showAdvanced)}
           >
             {showAdvanced ? (
-              <ChevronUp className="w-4 h-4 mr-1" />
+              <ChevronUp className="size-4" />
             ) : (
-              <ChevronDown className="w-4 h-4 mr-1" />
+              <ChevronDown className="size-4" />
             )}
             {showAdvanced ? '隐藏' : '显示'}
           </Button>

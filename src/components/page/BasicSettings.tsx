@@ -1,8 +1,8 @@
-import { Dice1, Sparkles } from 'lucide-react'
+import { Dice1 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { PasswordInput } from '@/components/ui/password-input'
 import {
   Select,
   SelectContent,
@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import type { Model } from '@/lib/data'
+import type { Model } from '@/types'
 
 interface BasicSettingsProps {
   models: Model[] | undefined
@@ -24,7 +24,6 @@ interface BasicSettingsProps {
   selectedModel: string
   setSelectedModel: (model: string) => void
   handleRandomPrompt: () => void
-  isPasswordRequired: boolean
 }
 
 export function BasicSettings({
@@ -38,38 +37,27 @@ export function BasicSettings({
   selectedModel,
   setSelectedModel,
   handleRandomPrompt,
-  isPasswordRequired,
 }: BasicSettingsProps) {
   return (
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5" />
-            基本设置
-          </CardTitle>
+          <CardTitle className="flex items-center gap-2">基本设置</CardTitle>
           <Button variant="outline" size="sm" onClick={handleRandomPrompt}>
-            <Dice1 className="w-4 h-4 mr-1" />
+            <Dice1 className="size-4" />
             随机提示词
           </Button>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="password">
-            访问密码
-            {isPasswordRequired && (
-              <span className="text-red-500 text-xs">
-                (已配置密码，输出密码才可生成图像)
-              </span>
-            )}
-          </Label>
-          <Input
+          <Label htmlFor="password">访问密码</Label>
+          <PasswordInput
             id="password"
-            type="password"
             placeholder="请输入访问密码"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            toggleAriaLabel="切换密码显示"
           />
         </div>
 

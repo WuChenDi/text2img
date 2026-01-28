@@ -1,12 +1,7 @@
-export interface Model {
-  id: string
-  name: string
-  description: string
-  key: string
-}
+import type { Model } from '@/types'
 
 // Available models list
-export const AVAILABLE_MODELS = [
+export const AVAILABLE_MODELS: Model[] = [
   {
     id: 'stable-diffusion-xl-base-1.0',
     name: 'Stable Diffusion XL Base 1.0',
