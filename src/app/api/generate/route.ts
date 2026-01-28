@@ -27,17 +27,20 @@ export async function POST(request: Request) {
     : []
 
   // Check password
-  if (
-    PASSWORDS.length > 0 &&
-    (!data.password || !PASSWORDS.includes(data.password))
-  ) {
-    return new Response(
-      JSON.stringify({ error: 'Please enter the correct password' }),
-      {
+  if (PASSWORDS.length > 0) {
+    if (!data.password) {
+      return new Response(JSON.stringify({ error: 'Password is required' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+
+    if (!PASSWORDS.includes(data.password)) {
+      return new Response(JSON.stringify({ error: 'Incorrect password' }), {
         status: 403,
         headers: { 'Content-Type': 'application/json' },
-      },
-    )
+      })
+    }
   }
 
   if ('prompt' in data && 'model' in data) {
