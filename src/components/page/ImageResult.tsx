@@ -1,9 +1,21 @@
 import { Copy, Download, Loader2 } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import type { GenerateParams } from '@/lib/hooks/useGeneration'
 import type { Model } from '@/types'
+
+const PARAM_LABELS: Record<string, string> = {
+  prompt: '提示词',
+  negative_prompt: '反向提示词',
+  model: '模型',
+  width: '宽度',
+  height: '高度',
+  num_steps: '步数',
+  guidance: '引导',
+  seed: '种子',
+}
 
 interface ImageResultProps {
   generatedImage: string | null
@@ -97,27 +109,14 @@ export function ImageResult({
                   <div className="flex flex-wrap gap-2">
                     {Object.entries(currentParams).map(([key, value]) => {
                       if (key === 'password' || !value) return null
-                      const paramNames: Record<string, string> = {
-                        prompt: '提示词',
-                        negative_prompt: '反向提示词',
-                        model: '模型',
-                        width: '宽度',
-                        height: '高度',
-                        num_steps: '步数',
-                        guidance: '引导',
-                        seed: '种子',
-                      }
                       return (
-                        <div
-                          key={key}
-                          className="text-xs bg-secondary px-2 py-1 rounded"
-                        >
+                        <Badge key={key} variant="secondary">
                           <span className="font-medium">
-                            {paramNames[key] || key}:
+                            {PARAM_LABELS[key] || key}:
                           </span>{' '}
                           {String(value).substring(0, 50)}
                           {String(value).length > 50 ? '...' : ''}
-                        </div>
+                        </Badge>
                       )
                     })}
                   </div>
