@@ -2,8 +2,14 @@ import { ChevronDown, ChevronUp, Shuffle } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from '@/components/ui/input-group'
 import { Label } from '@/components/ui/label'
+import { Slider } from '@/components/ui/slider'
 
 interface AdvancedOptionsProps {
   width: number
@@ -60,14 +66,13 @@ export function AdvancedOptions({
               <Label htmlFor="width">图像宽度</Label>
               <span className="text-sm font-mono">{width}px</span>
             </div>
-            <Input
+            <Slider
               id="width"
-              type="range"
               min={256}
               max={2048}
               step={64}
-              value={width}
-              onChange={(e) => setWidth(Number(e.target.value))}
+              value={[width]}
+              onValueChange={(values) => setWidth(values[0])}
             />
           </div>
 
@@ -76,14 +81,13 @@ export function AdvancedOptions({
               <Label htmlFor="height">图像高度</Label>
               <span className="text-sm font-mono">{height}px</span>
             </div>
-            <Input
+            <Slider
               id="height"
-              type="range"
               min={256}
               max={2048}
               step={64}
-              value={height}
-              onChange={(e) => setHeight(Number(e.target.value))}
+              value={[height]}
+              onValueChange={(values) => setHeight(values[0])}
             />
           </div>
 
@@ -92,14 +96,13 @@ export function AdvancedOptions({
               <Label htmlFor="num_steps">迭代步数</Label>
               <span className="text-sm font-mono">{numSteps}</span>
             </div>
-            <Input
+            <Slider
               id="num_steps"
-              type="range"
               min={1}
               max={20}
               step={1}
-              value={numSteps}
-              onChange={(e) => setNumSteps(Number(e.target.value))}
+              value={[numSteps]}
+              onValueChange={(values) => setNumSteps(values[0])}
             />
           </div>
 
@@ -108,21 +111,20 @@ export function AdvancedOptions({
               <Label htmlFor="guidance">引导系数</Label>
               <span className="text-sm font-mono">{guidance.toFixed(1)}</span>
             </div>
-            <Input
+            <Slider
               id="guidance"
-              type="range"
               min={0}
               max={30}
               step={0.5}
-              value={guidance}
-              onChange={(e) => setGuidance(Number(e.target.value))}
+              value={[guidance]}
+              onValueChange={(values) => setGuidance(values[0])}
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="seed">随机种子</Label>
-            <div className="flex gap-2">
-              <Input
+            <InputGroup>
+              <InputGroupInput
                 id="seed"
                 type="number"
                 placeholder="留空则随机生成"
@@ -131,10 +133,12 @@ export function AdvancedOptions({
                   setSeed(e.target.value ? Number(e.target.value) : '')
                 }
               />
-              <Button variant="outline" size="icon" onClick={handleRandomSeed}>
-                <Shuffle className="size-4" />
-              </Button>
-            </div>
+              <InputGroupAddon align="inline-end">
+                <InputGroupButton size="icon-xs" onClick={handleRandomSeed}>
+                  <Shuffle className="size-4" />
+                </InputGroupButton>
+              </InputGroupAddon>
+            </InputGroup>
             <p className="text-xs text-muted-foreground">
               使用相同的种子值可以在其他参数相同的情况下生成相似的图像
             </p>
