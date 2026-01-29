@@ -3,38 +3,22 @@
 import { useQuery } from '@tanstack/react-query'
 import { Github, Loader2, Sparkles } from 'lucide-react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'sonner'
 import { AdvancedOptions } from '@/components/page/AdvancedOptions'
 import { BasicSettings } from '@/components/page/BasicSettings'
 import { ImageResult } from '@/components/page/ImageResult'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
-import { genid } from '@/lib'
+import { fetchModels, fetchPrompts, genid } from '@/lib'
 import type { GenerateParams } from '@/lib/hooks/useGeneration'
 import { useGeneration } from '@/lib/hooks/useGeneration'
-import type { Model } from '@/types'
-
-async function fetchModels(): Promise<Model[]> {
-  const response = await fetch('/api/models')
-  if (!response.ok) {
-    throw new Error('Failed to fetch models')
-  }
-  return response.json()
-}
-
-async function fetchPrompts(): Promise<string[]> {
-  const response = await fetch('/api/prompts')
-  if (!response.ok) {
-    throw new Error('Failed to fetch prompts')
-  }
-  return response.json()
-}
+import type { ModelGroup } from '@/types'
 
 export default function Home() {
   const [prompt, setPrompt] = useState('cyberpunk cat')
   const [negativePrompt, setNegativePrompt] = useState('')
-  const [selectedModel, setSelectedModel] = useState('')
+  const [selectedModel, setSelectedModel] = useState('flux-1-schnell')
   const [password, setPassword] = useState('')
 
   // Advanced options
@@ -44,14 +28,18 @@ export default function Home() {
   const [guidance, setGuidance] = useState(7.5)
   const [seed, setSeed] = useState<number | ''>('')
 
-  const { data: models } = useQuery<Model[]>({
-    queryKey: ['models'],
+  const { data: modelGroups } = useQuery<ModelGroup[]>({
+    queryKey: ['ModelGroups'],
     queryFn: fetchModels,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
   })
 
   const { data: prompts } = useQuery<string[]>({
     queryKey: ['prompts'],
     queryFn: fetchPrompts,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
   })
 
   const {
@@ -61,6 +49,10 @@ export default function Home() {
     currentParams,
     handleGenerateClick,
   } = useGeneration()
+
+  const models = modelGroups
+    ? modelGroups.flatMap((group) => group.models)
+    : undefined
 
   const handleRandomPrompt = () => {
     if (prompts && prompts.length > 0) {
@@ -113,13 +105,6 @@ export default function Home() {
     toast.success('图像下载成功')
   }
 
-  // Set default model when models are loaded
-  useEffect(() => {
-    if (models && models.length > 0 && !selectedModel) {
-      setSelectedModel(models[1]?.id || models[0].id)
-    }
-  }, [models, selectedModel])
-
   const onGenerateClick = () => {
     const params: GenerateParams = {
       prompt,
@@ -157,7 +142,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">
           <div className="lg:col-span-2 space-y-4">
             <BasicSettings
-              models={models}
+              modelGroups={modelGroups}
               password={password}
               setPassword={setPassword}
               prompt={prompt}

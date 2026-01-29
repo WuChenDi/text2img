@@ -1,30 +1,135 @@
-import type { Model } from '@/types'
+import type { ModelGroup } from '@/types'
 
 // Available models list
-export const AVAILABLE_MODELS: Model[] = [
+export const AVAILABLE_MODELS: ModelGroup[] = [
   {
-    id: 'stable-diffusion-xl-base-1.0',
-    name: 'Stable Diffusion XL Base 1.0',
-    description: 'Stability AI SDXL 文生图模型',
-    key: '@cf/stabilityai/stable-diffusion-xl-base-1.0',
+    id: 'black-forest-labs',
+    name: 'Black Forest Labs',
+    image:
+      'https://developers.cloudflare.com/_astro/blackforestlabs.Ccs-Y4-D.svg',
+    models: [
+      {
+        id: 'flux-2-klein-9b',
+        name: 'FLUX.2 [klein] 9B',
+        description: '旗舰级极速模型，支持实时预览与高画质图像编辑。',
+        key: '@cf/black-forest-labs/flux-2-klein-9b',
+        group: 'black-forest-labs',
+        disabled: false,
+      },
+      {
+        id: 'flux-2-klein-4b',
+        name: 'FLUX.2 [klein] 4B',
+        description: '轻量化极致测速，适用于对延迟要求极高的实时交互场景。',
+        key: '@cf/black-forest-labs/flux-2-klein-4b',
+        group: 'black-forest-labs',
+        disabled: false,
+      },
+      {
+        id: 'flux-2-dev',
+        name: 'FLUX.2 [dev]',
+        description: '专业级写实工具，支持多参考图生成，细节还原度极高。',
+        key: '@cf/black-forest-labs/flux-2-dev',
+        group: 'black-forest-labs',
+        disabled: false,
+      },
+      {
+        id: 'flux-1-schnell',
+        name: 'FLUX.1 [schnell]',
+        description: '高效整流互感器模型，在极短时间内生成高质量艺术构图。',
+        key: '@cf/black-forest-labs/flux-1-schnell',
+        group: 'black-forest-labs',
+        disabled: false,
+      },
+    ],
   },
   {
-    id: 'flux-1-schnell',
-    name: 'FLUX.1 [schnell]',
-    description: '精确细节表现的高性能文生图模型',
-    key: '@cf/black-forest-labs/flux-1-schnell',
+    id: 'leonardo',
+    name: 'Leonardo AI',
+    image: 'https://developers.cloudflare.com/_astro/leonardo.OdhR6aP9.svg',
+    models: [
+      {
+        id: 'lucid-origin',
+        name: 'Lucid Origin',
+        description: '适配性最强的创意模型，精准遵循指令，支持复杂的文本渲染。',
+        key: '@cf/leonardo/lucid-origin',
+        group: 'leonardo',
+        disabled: true,
+      },
+      {
+        id: 'phoenix-1.0',
+        name: 'Phoenix 1.0',
+        description: '具备卓越的指令遵循能力，生成画面逻辑严密且文本清晰。',
+        key: '@cf/leonardo/phoenix-1.0',
+        group: 'leonardo',
+        disabled: true,
+      },
+    ],
   },
   {
-    id: 'dreamshaper-8-lcm',
-    name: 'DreamShaper 8 LCM',
-    description: '增强图像真实感的 SD 微调模型',
-    key: '@cf/lykon/dreamshaper-8-lcm',
+    id: 'bytedance',
+    name: 'ByteDance',
+    models: [
+      {
+        id: 'stable-diffusion-xl-lightning',
+        name: 'Stable Diffusion XL Lightning',
+        description: '闪电级生成速度，几步内即可快速导出 1024px 高清大图。',
+        key: '@cf/bytedance/stable-diffusion-xl-lightning',
+        group: 'bytedance',
+        disabled: false,
+      },
+    ],
   },
   {
-    id: 'stable-diffusion-xl-lightning',
-    name: 'Stable Diffusion XL Lightning',
-    description: '更加高效的文生图模型',
-    key: '@cf/bytedance/stable-diffusion-xl-lightning',
+    id: 'lykon',
+    name: 'Lykon',
+    models: [
+      {
+        id: 'dreamshaper-8-lcm',
+        name: 'DreamShaper 8 LCM',
+        description: '深度优化的写实模型，在保持多样化风格的同时增强照片质感。',
+        key: '@cf/lykon/dreamshaper-8-lcm',
+        group: 'lykon',
+        disabled: false,
+      },
+    ],
+  },
+  {
+    id: 'stabilityai',
+    name: 'Stability AI',
+    image: 'https://developers.cloudflare.com/_astro/stabilityai.CWXCgVjU.svg',
+    models: [
+      {
+        id: 'stable-diffusion-xl-base-1.0',
+        name: 'Stable Diffusion XL Base 1.0',
+        description:
+          '行业标准基座模型，提供稳定、高质量的文生图与图像修改功能。',
+        key: '@cf/stabilityai/stable-diffusion-xl-base-1.0',
+        group: 'stabilityai',
+        disabled: false,
+      },
+    ],
+  },
+  {
+    id: 'runwayml',
+    name: 'Runway ML',
+    models: [
+      {
+        id: 'stable-diffusion-v1-5-img2img',
+        name: 'Stable Diffusion v1.5 img2img',
+        description: '经典的图生图模型，支持以现有图像为底稿进行艺术再创作。',
+        key: '@cf/stabilityai/stable-diffusion-v1-5-img2img',
+        group: 'stabilityai',
+        disabled: true,
+      },
+      {
+        id: 'stable-diffusion-v1-5-inpainting',
+        name: 'Stable Diffusion v1.5 Inpainting',
+        description: '专业的局部重绘模型，通过遮罩精准修改或修复图像特定区域。',
+        key: '@cf/runwayml/stable-diffusion-v1-5-inpainting',
+        group: 'runwayml',
+        disabled: true,
+      },
+    ],
   },
 ]
 

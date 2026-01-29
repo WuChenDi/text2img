@@ -1,4 +1,5 @@
 import { Dices } from 'lucide-react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -6,15 +7,17 @@ import { PasswordInput } from '@/components/ui/password-input'
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import type { Model } from '@/types'
+import type { ModelGroup } from '@/types'
 
 interface BasicSettingsProps {
-  models: Model[] | undefined
+  modelGroups: ModelGroup[] | undefined
   password: string
   setPassword: (password: string) => void
   prompt: string
@@ -27,7 +30,7 @@ interface BasicSettingsProps {
 }
 
 export function BasicSettings({
-  models,
+  modelGroups,
   password,
   setPassword,
   prompt,
@@ -38,6 +41,17 @@ export function BasicSettings({
   setSelectedModel,
   handleRandomPrompt,
 }: BasicSettingsProps) {
+  const findSelectedModel = () => {
+    if (!modelGroups || !selectedModel) return null
+    for (const group of modelGroups) {
+      const model = group.models.find((m) => m.id === selectedModel)
+      if (model) return model
+    }
+    return null
+  }
+
+  const selectedModelData = findSelectedModel()
+
   return (
     <Card>
       <CardHeader>
@@ -89,25 +103,45 @@ export function BasicSettings({
             <SelectTrigger className="w-full">
               <SelectValue placeholder="选择模型">
                 <div className="flex items-center gap-2">
-                  {selectedModel
-                    ? models?.find((m) => m.id === selectedModel)?.name
-                    : '选择模型'}
+                  {selectedModelData ? selectedModelData.name : '选择模型'}
                 </div>
               </SelectValue>
             </SelectTrigger>
 
             <SelectContent>
-              {models?.map((model) => (
-                <SelectItem key={model.id} value={model.id}>
-                  <div className="flex flex-col">
-                    <span className="font-medium">{model.name}</span>
-                    {model.description && (
-                      <span className="text-xs text-muted-foreground mt-0.5">
-                        {model.description}
-                      </span>
+              {modelGroups?.map((group) => (
+                <SelectGroup key={group.id}>
+                  <SelectLabel className="flex items-center gap-2">
+                    {group.image && (
+                      <div className="relative w-4 h-4 shrink-0">
+                        <Image
+                          src={group.image}
+                          alt={`${group.name}`}
+                          fill
+                          sizes="16px"
+                          className="object-contain"
+                        />
+                      </div>
                     )}
-                  </div>
-                </SelectItem>
+                    {group.name}
+                  </SelectLabel>
+                  {group.models.map((model) => (
+                    <SelectItem
+                      key={model.id}
+                      value={model.id}
+                      disabled={model.disabled}
+                    >
+                      <div className="flex flex-col">
+                        <span className="font-medium">{model.name}</span>
+                        {model.description && (
+                          <span className="text-xs text-muted-foreground mt-0.5">
+                            {model.description}
+                          </span>
+                        )}
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
               ))}
             </SelectContent>
           </Select>
