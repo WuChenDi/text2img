@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { format } from 'date-fns'
 import { Github, Loader2, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -97,7 +98,7 @@ export default function Home() {
 
     const link = document.createElement('a')
     link.href = generatedImage
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+    const timestamp = format(new Date(), 'yyyy-MM-dd HH:mm:ss')
     const modelName =
       models?.find((m) => m.id === selectedModel)?.name || 'ai-image'
     link.download = `${modelName}-${timestamp}.png`
