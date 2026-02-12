@@ -1,7 +1,13 @@
 import { Dices } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { PasswordInput } from '@/components/ui/password-input'
 import {
@@ -55,13 +61,13 @@ export function BasicSettings({
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">基本设置</CardTitle>
+        <CardTitle>基础设置</CardTitle>
+        <CardAction>
           <Button variant="outline" size="sm" onClick={handleRandomPrompt}>
             <Dices className="size-4" />
             随机提示词
           </Button>
-        </div>
+        </CardAction>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">

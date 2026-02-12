@@ -1,4 +1,5 @@
 export * from './api'
 export * from './data'
 export * from './genid'
+export * from './logger'
 export * from './utils'
