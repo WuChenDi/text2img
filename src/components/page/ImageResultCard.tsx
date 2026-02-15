@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { Copy, Download, Eye, Trash2 } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { SCAssetFailed } from '@/components/SC/SCAssetFailed'
@@ -157,12 +158,12 @@ export function ImageResultCard({
           </DialogHeader>
 
           {isCompleted && result.imageUrl && (
-            <div className="rounded-lg overflow-hidden bg-muted">
-              {/* biome-ignore lint/performance/noImgElement: dynamic image source requires img element */}
-              <img
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-muted">
+              <Image
                 src={result.imageUrl}
                 alt="Generated"
-                className="w-full object-contain max-h-96"
+                fill
+                className="object-contain"
               />
             </div>
           )}
