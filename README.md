@@ -1,3 +1,6 @@
+> [!WARNING]
+> This repository has been moved to: [text2img](https://github.com/WuChenDi/projects/tree/main/apps/text2img)
+
 # 基于 CloudFlare 的在线文生图服务
 
 这是一个使用 Next.js 的文本生成图像服务，基于 Cloudflare AI Workers 的 AI 模型。
@@ -90,19 +93,19 @@ pnpm deploy
 
 ## 支持的模型
 
-| 厂商 | 模型 | 状态 |
-| --- | --- | --- |
-| Black Forest Labs | FLUX.2 [klein] 9B | ✅ |
-| Black Forest Labs | FLUX.2 [klein] 4B | ✅ |
-| Black Forest Labs | FLUX.2 [dev] | ✅ |
-| Black Forest Labs | FLUX.1 [schnell] | ✅ |
-| Leonardo AI | Lucid Origin | 🚫 |
-| Leonardo AI | Phoenix 1.0 | 🚫 |
-| ByteDance | Stable Diffusion XL Lightning | ✅ |
-| Lykon | DreamShaper 8 LCM | ✅ |
-| Stability AI | Stable Diffusion XL Base 1.0 | ✅ |
-| Runway ML | Stable Diffusion v1.5 img2img | 🚫 |
-| Runway ML | Stable Diffusion v1.5 Inpainting | 🚫 |
+| 厂商              | 模型                             | 状态 |
+| ----------------- | -------------------------------- | ---- |
+| Black Forest Labs | FLUX.2 [klein] 9B                | ✅    |
+| Black Forest Labs | FLUX.2 [klein] 4B                | ✅    |
+| Black Forest Labs | FLUX.2 [dev]                     | ✅    |
+| Black Forest Labs | FLUX.1 [schnell]                 | ✅    |
+| Leonardo AI       | Lucid Origin                     | 🚫    |
+| Leonardo AI       | Phoenix 1.0                      | 🚫    |
+| ByteDance         | Stable Diffusion XL Lightning    | ✅    |
+| Lykon             | DreamShaper 8 LCM                | ✅    |
+| Stability AI      | Stable Diffusion XL Base 1.0     | ✅    |
+| Runway ML         | Stable Diffusion v1.5 img2img    | 🚫    |
+| Runway ML         | Stable Diffusion v1.5 Inpainting | 🚫    |
 
 ## 📜 License
 
